@@ -19,8 +19,8 @@ function lagNyOppgave() {
   let tall1, tall2;
 
   if (naavaerendeNivaa === "lett") {
-    // Svaret blir maks 10 (f.eks. 1+1 opp til 10+0 eller 5+5)
-    riktigSvar = Math.floor(Math.random() * 9) + 2; // Svar mellom 2 og 10
+    
+    riktigSvar = Math.floor(Math.random() * 9) + 2;
     tall1 = Math.floor(Math.random() * (riktigSvar - 1)) + 1;
     tall2 = riktigSvar - tall1;
   } else if (naavaerendeNivaa === "middels") {
@@ -33,15 +33,15 @@ function lagNyOppgave() {
     riktigSvar = tall1 + tall2;
   }
 
-  // Vis oppgaven på skjermen
+
   document.getElementById("oppgave-tekst").innerText = `${tall1} + ${tall2} =`;
 
-  // Lag 4 svaralternativer (1 riktig + 3 feil)
+
   let alternativer = [riktigSvar];
   while (alternativer.length < 4) {
     let feilSvar;
     if (naavaerendeNivaa === "lett") {
-      // På lett nivå holder vi også feilalternativene mellom 1 og 10
+
       feilSvar = Math.floor(Math.random() * 10) + 1;
     } else {
       feilSvar = riktigSvar + (Math.floor(Math.random() * 10) - 5);
@@ -55,15 +55,14 @@ function lagNyOppgave() {
       alternativer.push(feilSvar);
     }
   }
-
-  // Bland alternativene tilfeldig
+ 
   alternativer.sort(() => Math.random() - 0.5);
 
-  // Sett tallene inn i knappene
+  
   let knapper = document.querySelectorAll(".spill-knapp");
   knapper.forEach((knapp, index) => {
     knapp.innerText = alternativer[index];
-    knapp.style.backgroundColor = "#4DB6AC"; // Tilbakestill farge
+    knapp.style.backgroundColor = "#4DB6AC"; 
   });
 }
 
