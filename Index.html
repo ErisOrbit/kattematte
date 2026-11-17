@@ -3,59 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>KatteMate</title>
+    <link rel="stylesheet" href="./bakgrund.css">
+    <script src="./main.js"></script>
 </head>
+<body>
 
-<body background="#fff8ef">
+    <div class="app-container">
+        <h1>KATTE MATE</h1>
 
+        <!-- Nivåvalg (fra flytskjemaet) -->
+        <div id="nivaa-velger" style="margin-bottom: 15px;">
+            <p>Velg nivå:</p>
+            <button class="nivaa-knapp" onclick="startSpill('lett')">Lett</button>
+            <button class="nivaa-knapp" onclick="startSpill('middels')">Middels</button>
+            <button class="nivaa-knapp" onclick="startSpill('vanskelig')">Vanskelig</button>
+        </div>
 
-    <h1>KATTE MATE</h1>
-    
+        <!-- Topp-panel med poeng, tid og knapper -->
+        <div class="topp-panel">
+            <span id="poeng-tekst">Poeng: 0</span>
+            <div>
+                <span>TID</span><br>
+                <progress id="tid-bar" value="100" max="100"></progress>
+            </div>
+            <div>
+                <button onclick="byttLyd()">🔊</button>
+                <button onclick="visMeny()">☰</button>
+            </div>
+        </div>
 
-    <fieldset>
-        <legend>KatteMate</legend>
+        <!-- Matteoppgaven -->
+        <div class="matte-oppgave" id="oppgave-tekst">
+            Velg nivå over!
+        </div>
 
-      
-            <b>Poeng: 0</b>
-        </p>
+        <p>Velg et av tallene du tror er riktig svar:</p>
 
-            <p>TID</p>
-            <progress value="45" max="100"></progress>
-            <button>Lyd</button>
-            <button>Meny</button>
-        
+        <!-- Svaralternativer -->
+        <div id="svar-knapper">
+            <button class="spill-knapp" onclick="sjekkSvar(this)">-</button>
+            <button class="spill-knapp" onclick="sjekkSvar(this)">-</button><br>
+            <button class="spill-knapp" onclick="sjekkSvar(this)">-</button>
+            <button class="spill-knapp" onclick="sjekkSvar(this)">-</button>
+        </div>
 
-       
-
-    
-            <fieldset>
-                <h1>X + X =</h1>
-            </fieldset>
-
-            <p>Velg en av tallene du tror er riktig svar.</p>
-
-            <p>
-                <button><h2>7</h2></button>
-                <button><h2>9</h2></button>
-            </p>
-
-            <p>
-                <button><h2>6</h2></button>
-                <button><h2>8</h2></button>
-            </p>
-
-          
-
-  
-
+        <!-- Kattens tilbakemelding -->
+        <div style="margin-top: 20px;">
             <h3>Hei! Jeg er KatteMate!</h3>
-            <p>Svar riktig for å samle poeng.</p>
+            <p id="katte-melding">Svar riktig for å samle poeng.</p>
+        </div>
+    </div>
 
-        
-    </fieldset>
-
-    <h3>Lær matte mens du spiller!</h3>
-
-
+    <script src="./spill.js"></script>
 </body>
 </html>
-

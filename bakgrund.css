@@ -1,6 +1,5 @@
-/* Generelle stiler for nettsiden */
 body {
-    background-color: #FFF3E0; /* Myk og varm bakgrunnsfarge */
+    background-color: hsl(36, 70%, 92%);
     font-family: 'Comic Sans MS', 'Arial', sans-serif;
     display: flex;
     justify-content: center;
@@ -9,7 +8,6 @@ body {
     margin: 0;
 }
 
-/* Hovedbeholder for appen */
 .app-container {
     background-color: #FFFFFF;
     border-radius: 25px;
@@ -17,21 +15,19 @@ body {
     width: 450px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     text-align: center;
-    border: 4px solid #FFCC80;
+    border: 4px solid hsl(36, 100%, 75%);
 }
 
-/* Område for matematikkoppgaven (f.eks. 5 + 3 = ) */
 .matte-oppgave {
     font-size: 42px;
     font-weight: bold;
-    color: #4E342E;
+    color: hsl(11, 26%, 24%);
     margin: 20px 0;
-    background: #FFF8E1;
+    background: hsl(46, 100%, 94%);
     padding: 15px;
     border-radius: 15px;
 }
 
-/* Stiler for spill-knapper */
 .spill-knapp {
     background-color: #4DB6AC; 
     color: white;
@@ -39,9 +35,9 @@ body {
     border-radius: 20px;
     font-size: 28px;
     font-weight: bold;
-    padding: 20px;
+    padding: 10px;
     margin: 10px;
-    width: 80px;
+    width: 90px;
     height: 80px;
     cursor: pointer;
     box-shadow: 0 6px #00897B;
@@ -57,7 +53,6 @@ body {
     box-shadow: 0 2px #00897B;
 }
 
-/* Toppanel (tid, poeng) */
 .topp-panel {
     display: flex;
     justify-content: space-between;
@@ -66,4 +61,18 @@ body {
     color: #5d4037;
     font-weight: bold;
     margin-bottom: 15px;
+}
+
+.nivaa-knapp {
+    background-color: hsl(36, 100%, 75%);
+    border: none;
+    border-radius: 10px;
+    padding: 8px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.nivaa-knapp:hover {
+    background-color: hsl(36, 100%, 65%);
 }
