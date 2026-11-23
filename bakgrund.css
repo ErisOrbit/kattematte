@@ -1,5 +1,9 @@
 body {
     background-color: hsl(36, 70%, 92%);
+    background-image: url('https://i.pinimg.com/736x/1f/a7/1b/1fa71b452fa8455153e7bccae117cfab.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     font-family: 'Comic Sans MS', 'Arial', sans-serif;
     display: flex;
     justify-content: center;
@@ -27,6 +31,7 @@ body {
     padding: 15px;
     border-radius: 15px;
 }
+
 
 .spill-knapp {
     background-color: #4DB6AC; 
