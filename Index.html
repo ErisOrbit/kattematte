@@ -10,6 +10,7 @@
     
 
     <div class="app-container">
+        <img src="./cat.png" alt="kattematte" class="katt">
         <h1>KATTE MATE</h1>
 
         <!-- Nivåvalg (fra flytskjemaet) -->
@@ -25,7 +26,7 @@
             <span id="poeng-tekst">Poeng: 0</span>
             <div>
                 <span>TID</span><br>
-                <progress id="tid-bar" value="60" max="606"></progress>
+                <progress id="tid-bar" value="60" max="60"></progress>
             </div>
             <div>
                 <button id="lyd-knapp" type="button" onclick="byttLyd()">🔊</button>
@@ -52,16 +53,38 @@
         <div style="margin-top: 20px;">
             <h3>Hei! Jeg er KatteMate!</h3>
             <p id="katte-melding">Svar riktig for å samle poeng.</p>
-            <!-- Lydfil (bakgrunnsmusikk) -->
-<audio id="bg-music" loop>
-    <source src="zephiramusic-lofi-gaming-606302.mp3" type="audio/mpeg">
-</audio>
-<!-- Knapp for musikk på/av -->
-<button class="spill-knapp lyd-knapp" onclick="toggleMusic()">🔊 Musikk</button>
         </div>
     </div>
 
-    <script src="./main.js"></script>
+    <div id="pause-meny" class="pause-meny" hidden>
+        <div class="pause-panel" role="dialog" aria-modal="true" aria-labelledby="pause-tittel">
+            <h2 id="pause-tittel">Pause</h2>
+
+            <div class="pause-seksjon">
+                <h3>Spillbildet</h3>
+                <div class="kildeboks">
+                    <img src="./bg.jpg" alt="Bakgrunnsbilde brukt i spillet">
+                    <p><strong>Bakgrunnsbilde:</strong> <code>AI (dont support)</code></p>
+                </div>
+            </div>
+
+            <div class="pause-seksjon">
+                <h3>Ikoner</h3>
+                <div class="kildeboks">
+                    <img src="./cat.png" alt="Katt-ikon brukt i spillet" style="width: 90px; height: 90px;">
+                    <p><strong>Katt-ikon:</strong> <code>AI (dont support)</code></p>
+                </div>
+            </div>
+
+            <div class="pause-seksjon">
+                <h3>Musikk</h3>
+                <p><strong>Bakgrunnsmusikk:</strong></p>
+                <p><code>zvukipro.com</code></p>
+            </div>
+
+            <button class="nivaa-knapp" type="button" onclick="fortsettSpill()">Fortsett spillet</button>
+        </div>
+    </div>
 
 </body>
 </html>

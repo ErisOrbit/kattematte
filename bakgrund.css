@@ -20,6 +20,7 @@ body {
     width: 50%;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     text-align: center;
+
    
 }
 .matte-oppgave {
@@ -32,6 +33,17 @@ body {
     border-radius: 15px;
 }
  
+
+.katt{
+    width: 300px;
+    height: auto;
+    margin-bottom: 20px;
+    position: absolute;
+    left: 30px;
+    bottom: 0px;
+}
+
+
 .spill-knapp {
     background-color: #4DB6AC;
     color: white;
@@ -79,4 +91,65 @@ body {
  
 .nivaa-knapp:hover {
     background-color: hsl(58, 97%, 50%);
+}
+
+.pause-meny[hidden] {
+    display: none;
+}
+
+.pause-meny {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: rgba(67, 57, 49, 0.62);
+    backdrop-filter: blur(8px);
+}
+
+.pause-panel {
+    width: min(520px, 100%);
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    padding: 24px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 24px;
+    background: #fffaf0;
+    color: #5d4037;
+    box-shadow: 0 18px 50px rgba(67, 57, 49, 0.35);
+    text-align: center;
+}
+
+.pause-panel h2 {
+    margin-top: 0;
+    font-size: 34px;
+}
+
+.pause-seksjon {
+    margin: 14px 0;
+    padding: 14px;
+    border-radius: 16px;
+    background: #e8f6e9;
+}
+
+.pause-seksjon h3 {
+    margin: 0 0 10px;
+}
+
+.pause-seksjon p {
+    margin: 6px 0;
+}
+
+.kildeboks img {
+    width: 100%;
+    max-height: 160px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.pause-panel code {
+    display: inline-block;
+    max-width: 100%;
+    overflow-wrap: anywhere;
 }

@@ -5,6 +5,8 @@ let tidIgjen = 60;
 let timerInterval;
 let lydPaa = true;
 let spillAktivt = false;
+let pausertTid = 60;
+let pausetOppgave = "";
 
 const bakgrunnMusikk = new Audio("./zephiramusic-lofi-gaming-606302.mp3");
 bakgrunnMusikk.loop = true;
@@ -162,11 +164,34 @@ function oppdaterLydKnapp() {
 
 function visMeny() {
   spillAktivt = false;
+  pausertTid = tidIgjen;
+  pausetOppgave = document.getElementById("oppgave-tekst").innerText;
   clearInterval(timerInterval);
   document.querySelectorAll(".spill-knapp").forEach((knapp) => {
     knapp.disabled = true;
   });
-  document.getElementById("oppgave-tekst").innerText = "Pause / Meny";
+  document.getElementById("oppgave-tekst").innerText = "Pause";
   document.getElementById("katte-melding").innerText =
-    "Velg et nivå øverst for å starte på nytt.";
+    "Spillet er pause.";
+  document.getElementById("pause-meny").hidden = false;
+}
+
+function fortsettSpill() {
+  document.getElementById("pause-meny").hidden = true;
+  spillAktivt = true;
+  tidIgjen = pausertTid;
+  oppdaterTid();
+  document.querySelectorAll(".spill-knapp").forEach((knapp) => {
+    knapp.disabled = false;
+  });
+  document.getElementById("oppgave-tekst").innerText =
+    pausetOppgave || "Spillet fortsetter!";
+  document.getElementById("katte-melding").innerText =
+    "Spillet fortsetter!";
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    tidIgjen = Math.max(0, tidIgjen - 1);
+    oppdaterTid();
+    if (tidIgjen === 0) avsluttSpill();
+  }, 300);
 }
