@@ -6,7 +6,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-   background-image: url(https://t4.ftcdn.net/jpg/20/48/92/85/360_F_2048928509_SFJywby8q7t8j3LbDu5byw4NM9jJgwKB.jpg);
+   background-image: url('./bg.jpg');
     background-size: cover;
     background-position: center;
 }
