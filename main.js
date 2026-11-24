@@ -1,18 +1,35 @@
 let poeng = 0;
 let riktigSvar = 0;
 let naavaerendeNivaa = "lett";
-let tidIgjen = 100;
+let tidIgjen = 60;
 let timerInterval;
 let lydPaa = true;
+let spillAktivt = false;
+
+const bakgrunnMusikk = new Audio("./zephiramusic-lofi-gaming-606302.mp3");
+bakgrunnMusikk.loop = true;
+bakgrunnMusikk.volume = 0.35;
+
+function startBakgrunnMusikk() {
+  if (!lydPaa) return;
+  bakgrunnMusikk.play().catch(() => {});
+}
+
+window.addEventListener("DOMContentLoaded", startBakgrunnMusikk);
+window.addEventListener("load", startBakgrunnMusikk);
+window.addEventListener("pointerdown", startBakgrunnMusikk, { once: true });
+window.addEventListener("keydown", startBakgrunnMusikk, { once: true });
 
 function startSpill(nivaa) {
   naavaerendeNivaa = nivaa;
   poeng = 0;
+  spillAktivt = true;
   oppdaterPoeng();
   lagNyOppgave();
   startTimer();
   document.getElementById("katte-melding").innerText =
     "Lykke til! Velg riktig svar.";
+  oppdaterLydKnapp();
 }
 
 function lagNyOppgave() {
@@ -61,46 +78,64 @@ function lagNyOppgave() {
   
   let knapper = document.querySelectorAll(".spill-knapp");
   knapper.forEach((knapp, index) => {
+    knapp.disabled = false;
     knapp.innerText = alternativer[index];
     knapp.style.backgroundColor = "#4DB6AC"; 
   });
 }
 
 function sjekkSvar(valgtKnapp) {
+  if (!spillAktivt) return;
+
   let valgtTall = parseInt(valgtKnapp.innerText);
   if (isNaN(valgtTall)) return;
 
   if (valgtTall === riktigSvar) {
     poeng++;
     oppdaterPoeng();
-    tidIgjen = Math.min(100, tidIgjen + 15);
+    tidIgjen = Math.min(60, tidIgjen + 15);
     document.getElementById("katte-melding").innerText =
       "Riktig svar!";
     lagNyOppgave();
   } else {
     valgtKnapp.style.backgroundColor = "#e57373";
     tidIgjen = Math.max(0, tidIgjen - 10);
+    oppdaterTid();
     document.getElementById("katte-melding").innerText =
       "Oi, det ble feil. Prøv igjen!";
+    if (tidIgjen === 0) avsluttSpill();
   }
 }
 
 function startTimer() {
   clearInterval(timerInterval);
-  tidIgjen = 100;
-  const tidBar = document.getElementById("tid-bar");
+  tidIgjen = 60;
+  oppdaterTid();
 
   timerInterval = setInterval(() => {
-    tidIgjen -= 1;
-    tidBar.value = tidIgjen;
-
-    if (tidIgjen <= 0) {
-      clearInterval(timerInterval);
-      document.getElementById("oppgave-tekst").innerText = "Tiden er ute!";
-      document.getElementById("katte-melding").innerText =
-        `Du fikk ${poeng} poeng! Velg et nivå for å spille igjen.`;
-    }
+    tidIgjen = Math.max(0, tidIgjen - 1);
+    oppdaterTid();
+    if (tidIgjen === 0) avsluttSpill();
   }, 300);
+}
+
+function oppdaterTid() {
+  document.getElementById("tid-bar").value = tidIgjen;
+}
+
+function avsluttSpill() {
+  if (!spillAktivt) return;
+
+  spillAktivt = false;
+  clearInterval(timerInterval);
+  tidIgjen = 0;
+  oppdaterTid();
+  document.querySelectorAll(".spill-knapp").forEach((knapp) => {
+    knapp.disabled = true;
+  });
+  document.getElementById("oppgave-tekst").innerText = "Tiden er ute!";
+  document.getElementById("katte-melding").innerText =
+    `Du fikk ${poeng} poeng! Velg et nivå over for å spille igjen.`;
 }
 
 function oppdaterPoeng() {
@@ -109,11 +144,28 @@ function oppdaterPoeng() {
 
 function byttLyd() {
   lydPaa = !lydPaa;
-  alert(lydPaa ? "Lyd er nå PÅ" : "Lyd er nå AV");
+  if (lydPaa) {
+    bakgrunnMusikk.play().catch(() => {});
+  } else {
+    bakgrunnMusikk.pause();
+  }
+  oppdaterLydKnapp();
+}
+
+function oppdaterLydKnapp() {
+  const lydKnapp = document.getElementById("lyd-knapp");
+  if (lydKnapp) {
+    lydKnapp.innerText = lydPaa ? "🔊" : "🔇";
+    lydKnapp.setAttribute("aria-label", lydPaa ? "Slå lyd av" : "Slå lyd på");
+  }
 }
 
 function visMeny() {
+  spillAktivt = false;
   clearInterval(timerInterval);
+  document.querySelectorAll(".spill-knapp").forEach((knapp) => {
+    knapp.disabled = true;
+  });
   document.getElementById("oppgave-tekst").innerText = "Pause / Meny";
   document.getElementById("katte-melding").innerText =
     "Velg et nivå øverst for å starte på nytt.";

@@ -1,27 +1,27 @@
 body {
     background-color: hsl(36, 70%, 92%);
-    background-image: url('https://i.pinimg.com/736x/1f/a7/1b/1fa71b452fa8455153e7bccae117cfab.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     font-family: 'Comic Sans MS', 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+   background-image: url(https://t4.ftcdn.net/jpg/20/48/92/85/360_F_2048928509_SFJywby8q7t8j3LbDu5byw4NM9jJgwKB.jpg);
+    background-size: cover;
+    background-position: center;
 }
-
+ 
 .app-container {
-    background-color: #FFFFFF;
+    background-color: #8ce4af;
     border-radius: 25px;
-    padding: 30px;
-    width: 450px;
+    height: 650px;
+    overflow: hidden;
+    padding: 20px;
+    width: 50%;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     text-align: center;
-    border: 4px solid hsl(36, 100%, 75%);
+   
 }
-
 .matte-oppgave {
     font-size: 42px;
     font-weight: bold;
@@ -31,10 +31,9 @@ body {
     padding: 15px;
     border-radius: 15px;
 }
-
-
+ 
 .spill-knapp {
-    background-color: #4DB6AC; 
+    background-color: #4DB6AC;
     color: white;
     border: none;
     border-radius: 20px;
@@ -48,16 +47,16 @@ body {
     box-shadow: 0 6px #00897B;
     transition: all 0.1s ease;
 }
-
+ 
 .spill-knapp:hover {
     background-color: #26A69A;
 }
-
+ 
 .spill-knapp:active {
     transform: translateY(4px);
     box-shadow: 0 2px #00897B;
 }
-
+ 
 .topp-panel {
     display: flex;
     justify-content: space-between;
@@ -67,9 +66,9 @@ body {
     font-weight: bold;
     margin-bottom: 15px;
 }
-
+ 
 .nivaa-knapp {
-    background-color: hsl(36, 100%, 75%);
+    background-color: hsl(54, 85%, 65%);
     border: none;
     border-radius: 10px;
     padding: 8px 15px;
@@ -77,7 +76,7 @@ body {
     cursor: pointer;
     margin: 0 5px;
 }
-
+ 
 .nivaa-knapp:hover {
-    background-color: hsl(36, 100%, 65%);
+    background-color: hsl(58, 97%, 50%);
 }
